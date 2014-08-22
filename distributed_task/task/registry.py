@@ -1,15 +1,12 @@
 from __future__ import unicode_literals
 
 from inspect import getmembers, isfunction
-from django.utils.module_loading import module_has_submodule
+
 from importlib import import_module
-from django.apps import apps
+from .loader import get_task_paths
 from distributed_task.exceptions import TaskNotRegisteredError
 import logging
 logger = logging.getLogger(__name__)
-
-
-TASKS_MODULE_NAME = 'tasks'
 
 
 class TaskRegistry(object):
@@ -17,10 +14,8 @@ class TaskRegistry(object):
     _registry = {}
 
     def discover(self):
-        for app_config in apps.get_app_configs():
-            if module_has_submodule(app_config.module, TASKS_MODULE_NAME):
-                tasks_module_name = '%s.%s' % (app_config.name, TASKS_MODULE_NAME)
-                self._load_tasks_of_module(tasks_module_name)
+        for path in get_task_paths():
+            self._load_tasks_of_module(path)
 
     def _load_tasks_of_module(self, tasks_module_name):
         module = import_module(tasks_module_name)
