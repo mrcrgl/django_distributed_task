@@ -75,7 +75,6 @@ class DjangoJSONDecoder(json.JSONDecoder):
         return self.check_for_models(o)
 
     def check_for_models(self, i):
-        print "Turn: %r (%s)" % (i, type(i))
 
         if not isinstance(i, (dict, list)):
             return i
