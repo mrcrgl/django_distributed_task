@@ -11,9 +11,10 @@ setup(
     url='http://pypi.python.org/pypi/django-distributed-task/',
     license='MIT',
     description='Django application to delegate tasks asynchronously to worker processes.',
-    long_description=open('README.txt').read(),
+    long_description=open('README.rst').read(),
     install_requires=[
         "Django >= 1.6",
         "pika >= 0.9.0",  # Maybe this should be optional
+        # "django_distributed_task",
     ],
 )
