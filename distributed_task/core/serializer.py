@@ -53,7 +53,7 @@ class DjangoJSONEncoder(json.JSONEncoder):
             obj = serializers.serialize('json', [o, ])[1:-1]
             key = uuid4().hex
             self._replacement_map[key] = obj
-            print self._replacement_map
+            # print self._replacement_map
             return key
         else:
             return super(DjangoJSONEncoder, self).default(o)
