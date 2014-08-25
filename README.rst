@@ -1,5 +1,6 @@
 
 .. image:: https://travis-ci.org/mrcrgl/django_distributed_task.svg
+.. image:: https://readthedocs.org/projects/django-distributed-task/badge/?version=latest
 
 
 ================
