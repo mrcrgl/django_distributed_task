@@ -1,3 +1,7 @@
+
+.. image:: https://travis-ci.org/mrcrgl/django_distributed_task.svg
+
+
 ================
 Distributed Task
 ================
