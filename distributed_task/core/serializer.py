@@ -10,6 +10,13 @@ from uuid import uuid4
 from django.utils.timezone import is_aware
 
 
+# Workaround for python3
+try:
+    iteritems = dict.iteritems
+except AttributeError:
+    iteritems = dict.items
+
+
 def serialize(obj):
     return json.dumps(obj, cls=DjangoJSONEncoder)
 
@@ -61,12 +68,6 @@ class DjangoJSONEncoder(json.JSONEncoder):
     def encode(self, o):
         result = super(DjangoJSONEncoder, self).encode(o)
 
-        # Workaround for python3
-        try:
-            iteritems = dict.iteritems
-        except AttributeError:
-            iteritems = dict.items
-
         for k, v in iteritems(self._replacement_map):
             result = result.replace('"%s"' % (k,), v)
 
@@ -104,7 +105,7 @@ class DjangoJSONDecoder(json.JSONDecoder):
                 # Just return it and ignore the stuff around
                 return g.object
 
-        for n, val in i.iteritems():
+        for n, val in iteritems(i):
             i[n] = self.check_for_models(i[n])
 
         return i
