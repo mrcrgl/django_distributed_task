@@ -13,6 +13,9 @@ It is useful for environments where celery is too overengeneered.
 .. toctree::
    :maxdepth: 2
 
+Docs are available at: http://django-distributed-task.readthedocs.org/en/latest/index.html
+PyPi packaged: https://pypi.python.org/pypi/django_distributed_task
+
 
 Installation
 ============
