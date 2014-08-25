@@ -8,4 +8,5 @@ Step by step introduction.
 
    overview
    install
+   settings
    usage

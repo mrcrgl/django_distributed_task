@@ -54,3 +54,9 @@ Response / Return values
 ------------------------
 
 Method return values are not available. Maybe in a further version.
+
+Start the worker
+----------------
+
+Finally, you need to start the worker process::
+    python manage.py run_worker

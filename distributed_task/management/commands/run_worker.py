@@ -5,7 +5,6 @@ from django.core.management.base import BaseCommand, CommandError
 from distributed_task.broker import get_broker
 from distributed_task.core.handler import task_handler
 from distributed_task.exceptions import BrokerConnectionError
-from pprint import pprint
 
 
 class Command(BaseCommand):
