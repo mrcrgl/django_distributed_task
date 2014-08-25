@@ -60,7 +60,14 @@ class DjangoJSONEncoder(json.JSONEncoder):
 
     def encode(self, o):
         result = super(DjangoJSONEncoder, self).encode(o)
-        for k, v in self._replacement_map.iteritems():
+
+        # Workaround for python3
+        try:
+            iteritems = dict.iteritems
+        except AttributeError:
+            iteritems = dict.items
+
+        for k, v in iteritems(self._replacement_map):
             result = result.replace('"%s"' % (k,), v)
 
         return result
