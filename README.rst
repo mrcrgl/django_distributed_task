@@ -1,3 +1,5 @@
+![Last built](https://travis-ci.org/mrcrgl/django_distributed_task.svg "Last build state")
+
 ================
 Distributed Task
 ================
