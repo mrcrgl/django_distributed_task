@@ -143,7 +143,7 @@ Version 1.1
 -----------
 
 * enhance worker process handling
-** Support for cron execution
-** Daemon support
-** Multiprocessing support
-* Database broker support (for testing and those environments without RabbitMQ or other messaging system)
+* worker support for cron execution
+* worker daemon support
+* worker multiprocessing support
+* database broker support (for testing and those environments without RabbitMQ or other messaging system)
