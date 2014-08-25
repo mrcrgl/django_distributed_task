@@ -1,12 +1,15 @@
 language: python
-
-python:
-  - 2.7
-  - 3.3
-  - 3.4
-
+env:
+  - TOXENV=py27-1.5.x
+  - TOXENV=py27-1.6.x
+  - TOXENV=py27-1.7.x
+  - TOXENV=py33-1.5.x
+  - TOXENV=py33-1.6.x
+  - TOXENV=py33-1.7.x
+  - TOXENV=py34-1.5.x
+  - TOXENV=py34-1.6.x
+  - TOXENV=py34-1.7.x
 install:
-  - pip install -r requirements.txt
-  - python setup.py install
-
-script: python manage.py test
+  - pip install tox
+script:
+  - tox

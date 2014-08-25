@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 EXCLUDE_FROM_PACKAGES = []
 
 setup(
-    name='Distributed Task',
+    name='django_distributed_task',
     version='1.0.0',
     author='Marc Riegel',
     author_email='mail@marclab.de',

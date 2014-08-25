@@ -4,3 +4,5 @@ dist/
 *.pyc
 .env/
 *.swp
+.tox/
+django_distributed_task.egg-info/
