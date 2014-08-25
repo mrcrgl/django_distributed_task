@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-# TODO move to local settings
 from distributed_task import settings
 import pika
 from ..interface import BrokerInterface
