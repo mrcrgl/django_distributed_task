@@ -23,7 +23,7 @@ Distributed Task
 Distributed Task is a lightweight module for `Django framework`_ to delegate different jobs to worker processes.
 It is useful for environments where Celery_ is too overengeneered.
 
-Project page: `Distributed task docs`_
+Installation and docs are available at: `Distributed task docs`_
 
 PyPi packaged: https://pypi.python.org/pypi/django_distributed_task
 
