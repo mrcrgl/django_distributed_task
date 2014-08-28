@@ -1,202 +1,153 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Django distributed task : Lightweight Django app for task delegation">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django distributed_task documentation! &mdash; django_distributed_task 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="django_distributed_task 1.0.0 documentation" href="#" />
+    <link rel="next" title="Getting started" href="intro/index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Django distributed task</title>
   </head>
-
   <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="intro/index.html" title="Getting started"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">django_distributed_task 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/mrcrgl/django_distributed_task">View on GitHub</a>
-
-          <h1 id="project_title">Django distributed task</h1>
-          <h2 id="project_tagline">Lightweight Django app for task delegation</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/mrcrgl/django_distributed_task/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/mrcrgl/django_distributed_task/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <p><img src="https://travis-ci.org/mrcrgl/django_distributed_task.svg" alt="tests"><img src="https://travis-ci.org/mrcrgl/django_distributed_task.svg" alt="tests"></p>
-
-<h1></h1>
-
-<h1>
-<a name="distributed-task" class="anchor" href="#distributed-task"><span class="octicon octicon-link"></span></a>Distributed Task</h1>
-
-<p>Distributed Task is a lightweight module for Django to delegate different jobs to worker processes.
-It is useful for environments where celery is too overengeneered.</p>
-
-<p>Docs are available at: <a href="http://django-distributed-task.readthedocs.org/en/latest/index.html">http://django-distributed-task.readthedocs.org/en/latest/index.html</a>
-PyPi packaged: <a href="https://pypi.python.org/pypi/django_distributed_task">https://pypi.python.org/pypi/django_distributed_task</a></p>
-
-<h1>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
-
-<p>To use distributed_task, a <a href="https://www.djangoproject.com/">Django</a> installation is required.</p>
-
-<h2>
-<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
-
-<p>It's well tested with following versions:</p>
-
-<p><code>+-----------+---------------+---------------+
-| Version   | Python        | Django        |
-+-----------+---------------+---------------+
-| 1.0       | 2.7, 3.3, 3.4 | 1.5, 1.6, 1.7 |
-+-----------+---------------+---------------+</code></p>
-
-<h2>
-<a name="get-the-code" class="anchor" href="#get-the-code"><span class="octicon octicon-link"></span></a>Get the code</h2>
-
-<p>django_distributed_task package is available on <code>pip</code>:</p>
-
-<p><code>pip install django_distributed_task</code></p>
-
-<h2>
-<a name="register-app-in-your-django-settingspy" class="anchor" href="#register-app-in-your-django-settingspy"><span class="octicon octicon-link"></span></a>Register app in your Django settings.py</h2>
-
-<p>After install, register <code>distributed_task</code> to your <code>INSTALLED_APPS</code>::</p>
-
-<pre><code>INSTALLED_APPS = (
-    ...
-    "distributed_task",
-)
-</code></pre>
-
-<p>And finally <code>sync</code> your database:</p>
-
-<p>.. code-block:: bash</p>
-
-<pre><code>./manage.py syncdb distributed_task
-</code></pre>
-
-<h1>
-<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h1>
-
-<p>In between of <code>celery &lt;https://github.com/celery/celery&gt;</code>, distributed_task is extremely lightweight.
-We'd decided to keep it simple with less of flexibility but straight at the needs.
-Just define for each method a <code>task</code>-method using the decorator and delay it at run time.</p>
-
-<h2>
-<a name="use-case" class="anchor" href="#use-case"><span class="octicon octicon-link"></span></a>Use case</h2>
-
-<p>The goal is to prevent "heavy" tasks to be executed between a web request and it's response.</p>
-
-<p>Examples for those tasks are:</p>
-
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="django-distributed-task-documentation">
+<h1>Django <cite>distributed_task</cite> documentation!<a class="headerlink" href="#django-distributed-task-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
 <ul>
-<li>Sending e-mails.</li>
-<li>Generation of pdf/csv/... files.</li>
-<li>Rendering of images, videos.</li>
-</ul><h1>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
-
-<p>The default call scheme is:
-    Task.delay -&gt; Broker -&gt; Worker -&gt; Execution</p>
-
-<h2>
-<a name="tasks" class="anchor" href="#tasks"><span class="octicon octicon-link"></span></a>Tasks</h2>
-
-<p>distributed_task will check in every installed app (<code>INSTALLED_APPS</code>) for a <code>tasks.py</code> file.</p>
-
-<h2>
-<a name="define-your-first-task" class="anchor" href="#define-your-first-task"><span class="octicon octicon-link"></span></a>Define your first task</h2>
-
-<p>Create a <code>tasks.py</code> file in your desired app of choice::</p>
-
-<pre><code>from distributed_task import register_task
-
-@register_task
-def my_heavy_task_method():
-    pass
-</code></pre>
-
-<h2>
-<a name="call-your-task" class="anchor" href="#call-your-task"><span class="octicon octicon-link"></span></a>Call your task</h2>
-
-<p>The decorator adds a <code>delay</code> method to your task. You can decide in runtime if you'd like to
-execute the task delayed or immediately.</p>
-
-<p>Execute delayed in a worker process::</p>
-
-<pre><code>my_heavy_task_method.delay(*args, **kwargs)
-</code></pre>
-
-<p>Default method execution (bypasses task distribution)::</p>
-
-<pre><code>my_heavy_task_method(*args, **kwargs)
-</code></pre>
-
-<h2>
-<a name="arguments" class="anchor" href="#arguments"><span class="octicon octicon-link"></span></a>Arguments</h2>
-
-<p>You can pass all args/kwargs to the <code>my_heavy_task_method.delay</code> method as you would call it normally.
-The serializer is also able to handle Django model instances but not QuerySets.</p>
-
-<p>This works fine::</p>
-
-<pre><code>instance = User.objects.first()
-
-my_heavy_task_method.delay('arg 1', user=instance, some_other_arg=False, some_float=12.5212)
-</code></pre>
-
-<h2>
-<a name="response--return-values" class="anchor" href="#response--return-values"><span class="octicon octicon-link"></span></a>Response / Return values</h2>
-
-<p>Method return values are not available. Maybe in a further version.</p>
-
-<h1>
-<a name="upcoming-versions" class="anchor" href="#upcoming-versions"><span class="octicon octicon-link"></span></a>Upcoming versions</h1>
-
-<p>These features/changes are in plan:</p>
-
-<h2>
-<a name="version-11" class="anchor" href="#version-11"><span class="octicon octicon-link"></span></a>Version 1.1</h2>
-
-<ul>
-<li>enhance worker process handling</li>
-<li>worker support for cron execution</li>
-<li>worker daemon support</li>
-<li>worker multiprocessing support</li>
-<li>database broker support (for testing and those environments without RabbitMQ or other messaging system)</li>
+<li class="toctree-l1"><a class="reference internal" href="intro/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/install.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/settings.html">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/usage.html">Usage</a></li>
 </ul>
-      </section>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>Installation:</strong></dt>
+<dd><p class="first last"><a class="reference internal" href="intro/install.html"><em>Install</em></a></p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django <cite>distributed_task</cite> documentation!</a></li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="intro/index.html"
+                        title="next chapter">Getting started</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2014, Marc Riegel.
+      
+      |
+      <a href="_sources/index.txt"
+          rel="nofollow">Page source</a></li>
     </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Django distributed task maintained by <a href="https://github.com/mrcrgl">mrcrgl</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+    
 
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-51277909-2");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+    
+    <script type="text/javascript">
 
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-51277909-2']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
 
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
   </body>
 </html>
